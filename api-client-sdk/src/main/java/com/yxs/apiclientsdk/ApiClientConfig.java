@@ -1,0 +1,29 @@
+package com.yxs.apiclientsdk;
+
+import com.yxs.apiclientsdk.client.ApiClient;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * @author: yxs
+ * @create: 2023-08-25 14:49
+ **/
+
+@Configuration
+@ConfigurationProperties("api.client")
+@Data
+@ComponentScan
+public class ApiClientConfig {
+
+    private String accessKey;
+
+    private String secretKey;
+
+    @Bean
+    public ApiClient apiClient(){
+        return new ApiClient(accessKey,secretKey);
+    }
+}
